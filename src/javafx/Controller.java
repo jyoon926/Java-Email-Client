@@ -79,7 +79,7 @@ public class Controller implements Initializable
             //Write code to add the account to the database here
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information");
-            alert.setHeaderText("Welcome to DeppeMail, " + name + ". Your email is " + email + "and your password is " + password + ".");
+            alert.setHeaderText("Welcome to DeppeMail, " + name + ". Your email is " + email + " and your password is " + password + ".");
             alert.showAndWait();
             Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Application.fxml")));
             Stage stage = new Stage();
