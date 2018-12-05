@@ -1,4 +1,4 @@
-package Javafx;
+package javafx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +17,8 @@ public class Main extends Application {
         primaryStage.setResizable(false);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     }
 }
