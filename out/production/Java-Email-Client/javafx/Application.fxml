@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -7,11 +8,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500" prefWidth="600" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.Controller">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="54.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
-      <Label layoutX="23.0" layoutY="14.0" text="DeppeMail Mailbox" textFill="WHITE">
+      <Rectangle height="54.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
+      <Label layoutY="14.0" text="DeppeMail Mailbox" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
       </Label>
    </children>
 </AnchorPane>
