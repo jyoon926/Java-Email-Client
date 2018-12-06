@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500" prefWidth="600" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.Controller">
+<AnchorPane id="AnchorPane" fx:id="mailboxPane" prefHeight="500" prefWidth="600" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.Controller">
    <children>
-      <Rectangle height="54.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
-      <Label layoutY="14.0" text="DeppeMail Mailbox" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </Label>
+      <AnchorPane maxHeight="54.0" minHeight="54.0" prefHeight="54.0" prefWidth="200.0">
+         <children>
+            <Rectangle height="54.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
+            <Label prefHeight="54.0" prefWidth="600.0" text="DeppeMail Mailbox" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Button layoutX="520.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnToStart" style="-fx-background-color: white;" text="Log Out" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
