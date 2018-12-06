@@ -9,8 +9,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -31,31 +29,20 @@ public class Controller implements Initializable
     @FXML
     private PasswordField confirmPassword;
 
-    public void returnToStart(ActionEvent event) throws Exception
-    {
-        Parent startParent = FXMLLoader.load(getClass().getResource("Start.fxml"));
-        Scene start = new Scene(startParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(start);
-        window.show();
-    }
-
     public void startLoginAction(ActionEvent event) throws Exception
     {
-        Parent loginParent = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        Scene login = new Scene(loginParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(login);
-        window.show();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Login.fxml")));
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void startCreateAccountAction(ActionEvent event) throws Exception
     {
-        Parent createAccountParent = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
-        Scene createAccount = new Scene(createAccountParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(createAccount);
-        window.show();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("CreateAccount.fxml")));
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void loginAction(ActionEvent event) throws Exception
@@ -73,12 +60,11 @@ public class Controller implements Initializable
         }
         else
         {
-            Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
-            Scene application = new Scene(applicationParent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(application);
-            window.show();
-            window.setResizable(false);
+            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Application.fxml")));
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            stage.setResizable(false);
         }
     }
 
@@ -88,19 +74,18 @@ public class Controller implements Initializable
         String email = newEmail.getText().toString();
         String password = newPassword.getText().toString();
         String passwordRetype = confirmPassword.getText().toString();
-        if (name.length() > 0 && email.length() > 0 && password.length() > 0 && password.equals(passwordRetype))
+        if (password.equals(passwordRetype))
         {
             //Write code to add the account to the database here
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Information");
-            alert.setHeaderText("Welcome to DeppeMail, " + name + ".");
+            alert.setHeaderText("Welcome to DeppeMail, " + name + ". Your email is " + email + " and your password is " + password + ".");
             alert.showAndWait();
-            Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
-            Scene application = new Scene(applicationParent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(application);
-            window.show();
-            window.setResizable(false);
+            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Application.fxml")));
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            stage.setResizable(false);
         }
         else
         {

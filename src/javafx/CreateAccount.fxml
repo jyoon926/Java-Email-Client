@@ -6,11 +6,10 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="createAcountPane" prefHeight="320.0" prefWidth="400.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.Controller">
+<AnchorPane id="AnchorPane" prefHeight="320.0" prefWidth="400.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.Controller">
    <children>
       <VBox alignment="CENTER" fillWidth="false" prefHeight="300.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -42,26 +41,14 @@
                   <Insets bottom="7.0" />
                </VBox.margin>
             </PasswordField>
-            <HBox>
-               <children>
-                  <Button cacheShape="false" mnemonicParsing="false" onAction="#createAccountAction" style="-fx-background-color: black; -fx-padding: 10px 30px;" text="Create Account" textFill="WHITE">
-                     <font>
-                        <Font name="Helvetica" size="13.0" />
-                     </font>
-                  </Button>
-                  <Button cacheShape="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#returnToStart" style="-fx-background-color: black; -fx-padding: 10px 30px;" text="Cancel" textFill="WHITE">
-                     <font>
-                        <Font name="Helvetica" size="13.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
+            <Button cacheShape="false" mnemonicParsing="false" onAction="#createAccountAction" style="-fx-background-color: black; -fx-padding: 10px 30px;" text="Create Account" textFill="WHITE">
+               <font>
+                  <Font name="Helvetica" size="13.0" />
+               </font>
                <VBox.margin>
-                  <Insets top="15.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
-            </HBox>
+            </Button>
          </children>
       </VBox>
       <!--<PasswordField fx:id="textPassword" layoutX="117.0" layoutY="178.0" promptText="Retype Password" style="-fx-background-color: #ddd; -fx-border-radius: 0px;" /-->
