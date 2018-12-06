@@ -6,10 +6,11 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="300" prefWidth="400" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.Controller">
+<AnchorPane id="AnchorPane" fx:id="loginPane" prefHeight="300" prefWidth="400" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.Controller">
    <children>
       <VBox alignment="CENTER" fillWidth="false" prefHeight="300.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -31,14 +32,26 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </PasswordField>
-            <Button cacheShape="false" mnemonicParsing="false" onAction="#loginAction" style="-fx-background-color: black; -fx-padding: 10px 30px;" text="Login" textFill="WHITE">
-               <font>
-                  <Font name="Helvetica" size="13.0" />
-               </font>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button cacheShape="false" mnemonicParsing="false" onAction="#loginAction" style="-fx-background-color: black; -fx-padding: 10px 30px;" text="Login" textFill="WHITE">
+                     <font>
+                        <Font name="Helvetica" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button cacheShape="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#returnToStart" style="-fx-background-color: black; -fx-padding: 10px 30px;" text="Cancel" textFill="WHITE">
+                     <font>
+                        <Font name="Helvetica" size="13.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
-            </Button>
+            </HBox>
          </children>
       </VBox>
    </children>
