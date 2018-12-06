@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import model.LoginModel;
 
 public class Controller implements Initializable
 {
@@ -63,8 +64,10 @@ public class Controller implements Initializable
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
 
+        LoginModel lm = new LoginModel();
+
         //Change this if statement so that it checks if the account is in the database
-        if (!email.equals("email@gmail.com") || !password.equals("password"))
+        if (lm.isLogin(email, password, ""))
         {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Failed");
