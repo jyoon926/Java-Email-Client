@@ -13,12 +13,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import model.LoginModel;
 
 public class Controller implements Initializable
 {
+    LoginModel lm = new LoginModel();
+
     @FXML
     private TextField textEmail;
     @FXML
@@ -59,29 +62,45 @@ public class Controller implements Initializable
         window.show();
     }
 
-    public void loginAction(ActionEvent event) throws Exception
-    {
+    @FXML
+    public void loginAction(ActionEvent event) throws Exception {
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
 
-        LoginModel lm = new LoginModel();
 
+        System.out.println("2");
         //Change this if statement so that it checks if the account is in the database
-        if (lm.isLogin(email, password, ""))
-        {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Failed");
-            alert.setHeaderText("Please enter a correct email and/or password");
-            alert.showAndWait();
+        try {
+            if (lm.isLogin(email, password, "login")) {
+                System.out.println("asdfgt");
+                login(event);
+            } else {
+                System.out.println("aergdfgbsfgdr");
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Failed");
+                alert.setHeaderText("Please enter a correct email and/or password");
+                alert.showAndWait();
+            }
         }
-        else
-        {
+        catch (Exception e){
+            System.out.println("fdsaasdhfdsgersa");
+            e.getStackTrace();
+
+        }
+    }
+
+    public void login(ActionEvent event) {
+        try {
             Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
             Scene application = new Scene(applicationParent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(application);
             window.show();
             window.setResizable(false);
+            System.out.println("sdfa3");
+        } catch (IOException e) {
+            System.out.println("sdfa");
+            e.getStackTrace();
         }
     }
 
@@ -118,6 +137,11 @@ public class Controller implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
+        if (this.lm.isConnected()) {
+            System.out.println("connected");
+        }
+        else {
+            System.out.println("not connected");
+        }
     }
 }

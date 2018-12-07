@@ -1,6 +1,6 @@
 
 public enum option {
-    ;
+    login;
 
     private option() {}
 

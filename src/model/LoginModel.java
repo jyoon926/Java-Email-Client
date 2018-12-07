@@ -26,18 +26,19 @@ public class LoginModel {
         return this.connection != null;
     }
 
-    public boolean isLogin(String address, String pass, String opt)throws Exception {
+    public boolean isLogin(String emailAddress, String password, String division)throws Exception {
 
         PreparedStatement pr = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM login where emailAddress = ? and password = ?";
+        String sql = "SELECT * FROM login where emailAddress = ? and password = ? and division = ?";
 
         try {
 
             pr = this.connection.prepareStatement(sql);
-            pr.setString(1, address);
-            pr.setString(2, pass);
+            pr.setString(1, emailAddress);
+            pr.setString(2, password);
+            pr.setString(3, division);
 
             rs = pr.executeQuery();
 
