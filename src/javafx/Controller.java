@@ -65,13 +65,19 @@ public class Controller implements Initializable
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
 
-        if (DBAccess.authenticateLogin(email, password)) {
-            login(event);
-        } else {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Failed");
-            alert.setHeaderText("Please enter a correct email and/or password");
-            alert.showAndWait();
+        if(!(checkUserString(email) && checkPasswordString(password))) {
+            //inputs are not valid
+        }
+        else
+        {
+            if (DBAccess.authenticateLogin(email, password)) {
+                login(event);
+            } else {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Failed");
+                alert.setHeaderText("Please enter a correct email and/or password");
+                alert.showAndWait();
+            }            
         }
     }
 
@@ -97,17 +103,23 @@ public class Controller implements Initializable
             alert.setTitle("Failed");
             alert.setHeaderText("Please enter a username, not an email.");
             alert.showAndWait();
+        } 
+        else if (!(checkNameString(name) && checkUserString(username) && checkPasswordString(password))) 
+        {
+            //inputs are not valid
         }
         else if (name.length() > 0 && username.length() > 0 && password.length() > 0 && password.equals(passwordRetype))
         {
-            if (DBAccess.addAccount(username, password).equals("user already exists"))
+            String addAccountOutput = DBAccess.addAccount(username, password);
+            
+            if (addAccountOutput.equals("user already exists"))
             {
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Failed");
                 alert.setHeaderText("Username is taken.");
                 alert.showAndWait();
             }
-            else if (DBAccess.addAccount(username, password).equals("success"))
+            else if (addAccountOutput.equals("success"))
             {
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Information");
@@ -141,5 +153,22 @@ public class Controller implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+    }
+    
+    public static boolean checkUserString(String str) {
+        return str.matches("^\\w+([-+.']\\w+)*$");
+    }
+
+    public static boolean checkPasswordString(String str) {
+        //general check to prevent unwanted characters
+        boolean generalCheck = str.matches("^\\w+([-+.'\\[\\]]\\w*)*$");
+        //check for unsavory things in brackets or dot after brackets
+        boolean bracketCheck = str.matches(	"[\\{\\[\\(][\\d\"']+[\\}\\]\\)]*|[\\)\\]]\\.");
+        
+        return generalCheck && bracketCheck;
+    }  
+    
+    public static boolean checkNameString(String str) {
+        return !str.matches("^[\\p{L}\\s'.-]+$");
     }
 }

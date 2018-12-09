@@ -34,31 +34,30 @@ public class DBAccess
     {
         try
         {
-            //SQL SELECT query
-            String query =
-                "SELECT * FROM users.users WHERE user = '" +
-                user_ + "'";
-
-            //SQL INSERT to insert user
-            String insert =
-                "INSERT INTO users.users (user, password) VALUES ('" +
-                user_ + "', '" + hashString(password_) +
-                "')";
-
             //create a statement
-            Statement st = conn.createStatement();
+            PreparedStatement st = conn.prepareStatement(
+                "SELECT * FROM users.users Where user = ?"
+            );
+            st.setString(1, user_);
 
             //execute query, and get a resultset
-            ResultSet rs = st.executeQuery(query);
+            ResultSet rs = st.executeQuery();
 
             //check if user exists
             if (rs.next())
             {
                 return "user already exists";
             }
+            st.close();
+
+            st = conn.prepareStatement(
+                "INSERT INTO users.users (user, password) VALUES (?, ?)"
+            );
+            st.setString(1, user_);
+            st.setString(2, hashString(password_));
 
             //create user;
-            st.executeUpdate(insert);
+            st.executeUpdate();
 
             st.close();
 
@@ -76,16 +75,15 @@ public class DBAccess
     {
         try
         {
-            //SQL SELECT query
-            String query =
-                "SELECT * FROM users.users WHERE user = '" +
-                user_ + "'";
 
             //create a statement
-            Statement st = conn.createStatement();
+            PreparedStatement st = conn.prepareStatement(
+                "SELECT * FROM users.users where user = ?"
+            );
+            st.setString(1, user_);
 
             //execute query, and get a resultset
-            ResultSet rs = st.executeQuery(query);
+            ResultSet rs = st.executeQuery();
 
             String password = null;
 
@@ -115,19 +113,18 @@ public class DBAccess
 
         try
         {
-            //SQL DELTE to delete user
-            String delete =
-                "DELETE FROM users.users WHERE user = '" +
-                user_ + "' AND password = '" +
-                hashString(password_) + "'";
 
             if (authenticateLogin(user_, password_))
             {
                 //create a statement
-                Statement st = conn.createStatement();
+                PreparedStatement st = conn.prepareStatement(
+                    "DELETE FROM users.users WHERE user = ? AND password = ?"
+                );
+                st.setString(1, user_);
+                st.setString(2, hashString(password_));
 
                 //delete user
-                st.executeUpdate(delete);
+                st.executeUpdate();
 
                 st.close();
 
