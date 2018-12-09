@@ -21,7 +21,7 @@ public class DBAccess
             String myUrl = "jdbc:mysql://10.0.8.240";
             Class.forName(myDriver);
             conn = DriverManager.getConnection(myUrl,
-                "dbuser", "password");
+                "dbuser", "password"); //im good at security I swear :P
 
         }
         catch (Exception e)
@@ -36,7 +36,7 @@ public class DBAccess
         {
             //create a statement
             PreparedStatement st = conn.prepareStatement(
-                "SELECT * FROM users.users Where user = ?"
+                "SELECT * FROM users.users WHERE user = ?"
             );
             st.setString(1, user_);
 
@@ -79,7 +79,7 @@ public class DBAccess
 
             //create a statement
             PreparedStatement st = conn.prepareStatement(
-                "SELECT * FROM users.users where user = ?"
+                "SELECT * FROM users.users WHERE user = ?"
             );
             st.setString(1, user_);
 
@@ -145,22 +145,54 @@ public class DBAccess
     public static String getUID(String user, String password)
     {
 
-        /*
-         * TODO:
-         * implement
-         */
-
-        return "";
+        try
+        {
+            PreparedStatement st = conn.prepareStatement("SELECT * FROM users.users WHERE user = ? AND password = ?");
+            st.setString(1, user);
+            st.setString(2, hashString(password));
+            
+            ResultSet rs = st.executeQuery();
+            
+            String uid = null;
+            
+            while(rs.next()) {
+                uid = rs.getString("userid");
+            }
+            st.close();
+            
+            return uid;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return "error";
+        }
     }
 
-    public static String getName(String user) {
-        
-        /*
-         * TODO:
-         * implement
-         */
-
-        return "";
+    public static String getName(String user, String password) 
+    {
+        try
+        {
+            PreparedStatement st = conn.prepareStatement("SELECT * FROM users.users WHERE user = ? AND password = ?");
+            st.setString(1, user);
+            st.setString(2, hashString(password));
+            
+            ResultSet rs = st.executeQuery();
+            
+            String name = null;
+            
+            while(rs.next()) {
+                name = rs.getString("name");
+            }
+            st.close();
+            
+            return name;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return "error";
+        }
     }
     
     public static String hashString(String str)
