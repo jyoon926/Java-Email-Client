@@ -77,7 +77,7 @@ public class Controller implements Initializable
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
 
-        if ((checkUserString(email) && checkPasswordString(password))) {
+        if (!(checkUserString(email) && checkPasswordString(password))) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Failed");
             alert.setHeaderText("Your inputs are not valid.");
@@ -200,6 +200,6 @@ public class Controller implements Initializable
     }  
     
     public static boolean checkNameString(String str) {
-        return !str.matches("^[\\p{L}\\s'.-]+$");
+        return str.matches("^[\\p{L}\\s'.-]+$");
     }
 }
