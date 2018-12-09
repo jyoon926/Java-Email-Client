@@ -12,16 +12,14 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
+import javafx.DBAccess;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import model.LoginModel;
 
 public class Controller implements Initializable
 {
-    LoginModel lm = new LoginModel();
-
     @FXML
     private TextField textEmail;
     @FXML
@@ -71,8 +69,7 @@ public class Controller implements Initializable
         System.out.println("2");
         //Change this if statement so that it checks if the account is in the database
         try {
-            if (lm.isLogin(email, password, "login")) {
-                System.out.println("asdfgt");
+            if (true) {
                 login(event);
             } else {
                 System.out.println("aergdfgbsfgdr");
@@ -137,11 +134,5 @@ public class Controller implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        if (this.lm.isConnected()) {
-            System.out.println("connected");
-        }
-        else {
-            System.out.println("not connected");
-        }
     }
 }
