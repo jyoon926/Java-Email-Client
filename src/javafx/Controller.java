@@ -12,7 +12,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
-import javafx.DBAccess;
 
 import java.io.IOException;
 import java.net.URL;
@@ -61,65 +60,73 @@ public class Controller implements Initializable
     }
 
     @FXML
-    public void loginAction(ActionEvent event) throws Exception {
+    public void loginAction(ActionEvent event) throws Exception
+    {
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
 
-
-        System.out.println("2");
-        //Change this if statement so that it checks if the account is in the database
-        try {
-            if (true) {
-                login(event);
-            } else {
-                System.out.println("aergdfgbsfgdr");
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Failed");
-                alert.setHeaderText("Please enter a correct email and/or password");
-                alert.showAndWait();
-            }
-        }
-        catch (Exception e){
-            System.out.println("fdsaasdhfdsgersa");
-            e.getStackTrace();
-
+        if (DBAccess.authenticateLogin(email, password)) {
+            login(event);
+        } else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Failed");
+            alert.setHeaderText("Please enter a correct email and/or password");
+            alert.showAndWait();
         }
     }
 
-    public void login(ActionEvent event) {
-        try {
+    public void login(ActionEvent event) throws IOException
+    {
             Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
             Scene application = new Scene(applicationParent);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(application);
             window.show();
             window.setResizable(false);
-            System.out.println("sdfa3");
-        } catch (IOException e) {
-            System.out.println("sdfa");
-            e.getStackTrace();
-        }
     }
 
     public void createAccountAction(ActionEvent event) throws Exception
     {
         String name = newName.getText().toString();
-        String email = newEmail.getText().toString();
+        String username = newEmail.getText().toString();
         String password = newPassword.getText().toString();
         String passwordRetype = confirmPassword.getText().toString();
-        if (name.length() > 0 && email.length() > 0 && password.length() > 0 && password.equals(passwordRetype))
+        if (username.contains("@"))
         {
-            //Write code to add the account to the database here
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Information");
-            alert.setHeaderText("Welcome to DeppeMail, " + name + ".");
+            alert.setTitle("Failed");
+            alert.setHeaderText("Please enter a username, not an email.");
             alert.showAndWait();
-            Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
-            Scene application = new Scene(applicationParent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(application);
-            window.show();
-            window.setResizable(false);
+        }
+        else if (name.length() > 0 && username.length() > 0 && password.length() > 0 && password.equals(passwordRetype))
+        {
+            if (DBAccess.addAccount(username, password).equals("user already exists"))
+            {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Failed");
+                alert.setHeaderText("Username is taken.");
+                alert.showAndWait();
+            }
+            else if (DBAccess.addAccount(username, password).equals("success"))
+            {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setHeaderText("Welcome to DeppeMail, " + name + ".");
+                alert.showAndWait();
+                Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
+                Scene application = new Scene(applicationParent);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(application);
+                window.show();
+                window.setResizable(false);
+            }
+            else
+            {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Failed");
+                alert.setHeaderText("An unknown error occurred. Try again.");
+                alert.showAndWait();
+            }
         }
         else
         {

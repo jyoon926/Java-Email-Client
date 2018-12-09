@@ -27,7 +27,7 @@
                   <Insets bottom="7.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="newEmail" promptText="Email" style="-fx-background-color: #ddd;">
+            <TextField fx:id="newEmail" promptText="Username" style="-fx-background-color: #ddd;">
                <VBox.margin>
                   <Insets bottom="7.0" />
                </VBox.margin>
