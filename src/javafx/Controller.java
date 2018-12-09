@@ -63,12 +63,21 @@ public class Controller implements Initializable
         window.show();
     }
 
+    public void startNewMessageAction(ActionEvent event) throws Exception
+    {
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("NewMessage.fxml")));
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        stage.setResizable(false);
+    }
+
     public void loginAction(ActionEvent event) throws Exception
     {
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
 
-        if (!(checkUserString(email) && checkPasswordString(password))) {
+        if ((checkUserString(email) && checkPasswordString(password))) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Failed");
             alert.setHeaderText("Your inputs are not valid.");
@@ -85,9 +94,9 @@ public class Controller implements Initializable
         {
             if (DBAccess.authenticateLogin(email, password)) {
                 login(event);
-                //name = DBAccess.getName();
+                name = DBAccess.getName(this.username, this.password);
                 username = email;
-                this.password = password;
+                this.password = DBAccess.hashString(password);
             } else {
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Failed");
@@ -142,7 +151,7 @@ public class Controller implements Initializable
             {
                 this.name = name;
                 this.username = username;
-                this.password = password;
+                this.password = DBAccess.hashString(password);
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Information");
                 alert.setHeaderText("Welcome to DeppeMail, " + name + ".");
