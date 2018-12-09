@@ -32,6 +32,10 @@ public class Controller implements Initializable
     @FXML
     private PasswordField confirmPassword;
 
+    private String name;
+    private String username;
+    private String password;
+
     public void returnToStart(ActionEvent event) throws Exception
     {
         Parent startParent = FXMLLoader.load(getClass().getResource("Start.fxml"));
@@ -59,25 +63,37 @@ public class Controller implements Initializable
         window.show();
     }
 
-    @FXML
     public void loginAction(ActionEvent event) throws Exception
     {
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
 
-        if(!(checkUserString(email) && checkPasswordString(password))) {
-            //inputs are not valid
+        if (!(checkUserString(email) && checkPasswordString(password))) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Failed");
+            alert.setHeaderText("Your inputs are not valid.");
+            alert.showAndWait();
+        }
+        else if (email.contains("@") && !email.substring(email.indexOf("@") + 1).equals("deppemail.com"))
+        {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Failed");
+            alert.setHeaderText("Please use '@deppemail' as the domain.");
+            alert.showAndWait();
         }
         else
         {
             if (DBAccess.authenticateLogin(email, password)) {
                 login(event);
+                //name = DBAccess.getName();
+                username = email;
+                this.password = password;
             } else {
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Failed");
                 alert.setHeaderText("Please enter a correct email and/or password");
                 alert.showAndWait();
-            }            
+            }
         }
     }
 
@@ -106,11 +122,14 @@ public class Controller implements Initializable
         } 
         else if (!(checkNameString(name) && checkUserString(username) && checkPasswordString(password))) 
         {
-            //inputs are not valid
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Failed");
+            alert.setHeaderText("Your inputs are not valid. Try again.");
+            alert.showAndWait();
         }
         else if (name.length() > 0 && username.length() > 0 && password.length() > 0 && password.equals(passwordRetype))
         {
-            String addAccountOutput = DBAccess.addAccount(username, password);
+            String addAccountOutput = DBAccess.addAccount(name, username, password);
             
             if (addAccountOutput.equals("user already exists"))
             {
@@ -121,6 +140,9 @@ public class Controller implements Initializable
             }
             else if (addAccountOutput.equals("success"))
             {
+                this.name = name;
+                this.username = username;
+                this.password = password;
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Information");
                 alert.setHeaderText("Welcome to DeppeMail, " + name + ".");
