@@ -195,8 +195,8 @@ public class Controller implements Initializable
         boolean generalCheck = str.matches("^\\w+([-+.'\\[\\]]\\w*)*$");
         //check for unsavory things in brackets or dot after brackets
         boolean bracketCheck = str.matches(	"[\\{\\[\\(][\\d\"']+[\\}\\]\\)]*|[\\)\\]]\\.");
-        
-        return generalCheck && bracketCheck;
+
+        return generalCheck && !bracketCheck;
     }  
     
     public static boolean checkNameString(String str) {
