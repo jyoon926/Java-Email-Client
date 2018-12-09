@@ -30,7 +30,7 @@ public class DBAccess
         }
     }
 
-    public static String addAccount(String user_, String password_)
+    public static String addAccount(String name_, String user_, String password_)
     {
         try
         {
@@ -51,10 +51,11 @@ public class DBAccess
             st.close();
 
             st = conn.prepareStatement(
-                "INSERT INTO users.users (user, password) VALUES (?, ?)"
+                "INSERT INTO users.users (name, user, password) VALUES (?, ?, ?)"
             );
-            st.setString(1, user_);
-            st.setString(2, hashString(password_));
+            st.setString(1, name_);
+            st.setString(2, user_);
+            st.setString(3, hashString(password_));
 
             //create user;
             st.executeUpdate();
@@ -152,6 +153,16 @@ public class DBAccess
         return "";
     }
 
+    public static String getName(String user) {
+        
+        /*
+         * TODO:
+         * implement
+         */
+
+        return "";
+    }
+    
     public static String hashString(String str)
     {
 
