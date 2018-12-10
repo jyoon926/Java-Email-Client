@@ -13,9 +13,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import model.LoginModel;
 
 public class Controller implements Initializable
 {
@@ -31,6 +31,10 @@ public class Controller implements Initializable
     private PasswordField newPassword;
     @FXML
     private PasswordField confirmPassword;
+
+    private String name;
+    private String username;
+    private String password;
 
     public void returnToStart(ActionEvent event) throws Exception
     {
@@ -59,51 +63,113 @@ public class Controller implements Initializable
         window.show();
     }
 
+    public void startNewMessageAction(ActionEvent event) throws Exception
+    {
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("NewMessage.fxml")));
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        stage.setResizable(false);
+    }
+
     public void loginAction(ActionEvent event) throws Exception
     {
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
 
-        LoginModel lm = new LoginModel();
-
-        //Change this if statement so that it checks if the account is in the database
-        if (lm.isLogin(email, password, ""))
+        if (!(checkUserString(email) && checkPasswordString(password))) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Failed");
+            alert.setHeaderText("Your inputs are not valid.");
+            alert.showAndWait();
+        }
+        else if (email.contains("@") && !email.substring(email.indexOf("@") + 1).equals("deppemail.com"))
         {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Failed");
-            alert.setHeaderText("Please enter a correct email and/or password");
+            alert.setHeaderText("Please use '@deppemail' as the domain.");
             alert.showAndWait();
         }
         else
         {
+            if (DBAccess.authenticateLogin(email, password)) {
+                login(event);
+                name = DBAccess.getName(this.username, this.password);
+                username = email;
+                this.password = DBAccess.hashString(password);
+            } else {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Failed");
+                alert.setHeaderText("Please enter a correct email and/or password");
+                alert.showAndWait();
+            }
+        }
+    }
+
+    public void login(ActionEvent event) throws IOException
+    {
             Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
             Scene application = new Scene(applicationParent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(application);
             window.show();
             window.setResizable(false);
-        }
     }
 
     public void createAccountAction(ActionEvent event) throws Exception
     {
         String name = newName.getText().toString();
-        String email = newEmail.getText().toString();
+        String username = newEmail.getText().toString();
         String password = newPassword.getText().toString();
         String passwordRetype = confirmPassword.getText().toString();
-        if (name.length() > 0 && email.length() > 0 && password.length() > 0 && password.equals(passwordRetype))
+        if (username.contains("@"))
         {
-            //Write code to add the account to the database here
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Information");
-            alert.setHeaderText("Welcome to DeppeMail, " + name + ".");
+            alert.setTitle("Failed");
+            alert.setHeaderText("Please enter a username, not an email.");
             alert.showAndWait();
-            Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
-            Scene application = new Scene(applicationParent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(application);
-            window.show();
-            window.setResizable(false);
+        } 
+        else if (!(checkNameString(name) && checkUserString(username) && checkPasswordString(password))) 
+        {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Failed");
+            alert.setHeaderText("Your inputs are not valid. Try again.");
+            alert.showAndWait();
+        }
+        else if (name.length() > 0 && username.length() > 0 && password.length() > 0 && password.equals(passwordRetype))
+        {
+            String addAccountOutput = DBAccess.addAccount(name, username, password);
+            
+            if (addAccountOutput.equals("user already exists"))
+            {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Failed");
+                alert.setHeaderText("Username is taken.");
+                alert.showAndWait();
+            }
+            else if (addAccountOutput.equals("success"))
+            {
+                this.name = name;
+                this.username = username;
+                this.password = DBAccess.hashString(password);
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setHeaderText("Welcome to DeppeMail, " + name + ".");
+                alert.showAndWait();
+                Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
+                Scene application = new Scene(applicationParent);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(application);
+                window.show();
+                window.setResizable(false);
+            }
+            else
+            {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Failed");
+                alert.setHeaderText("An unknown error occurred. Try again.");
+                alert.showAndWait();
+            }
         }
         else
         {
@@ -118,6 +184,22 @@ public class Controller implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+    }
+    
+    public static boolean checkUserString(String str) {
+        return str.matches("^\\w+([-+.']\\w+)*$");
+    }
 
+    public static boolean checkPasswordString(String str) {
+        //general check to prevent unwanted characters
+        boolean generalCheck = str.matches("^\\w+([-+.'\\[\\]]\\w*)*$");
+        //check for unsavory things in brackets or dot after brackets
+        boolean bracketCheck = str.matches(	"[\\{\\[\\(][\\d\"']+[\\}\\]\\)]*|[\\)\\]]\\.");
+
+        return generalCheck && !bracketCheck;
+    }  
+    
+    public static boolean checkNameString(String str) {
+        return str.matches("^[\\p{L}\\s'.-]+$");
     }
 }
