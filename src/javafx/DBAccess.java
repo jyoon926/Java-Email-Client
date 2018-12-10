@@ -18,7 +18,7 @@ public class DBAccess
             String myDriver =
                 "com.mysql.cj.jdbc.Driver";
             //this URL will change when server is hosted somewhere
-            String myUrl = "jdbc:mysql://10.0.8.240";
+            String myUrl = "jdbc:mysql://10.180.1.207";
             Class.forName(myDriver);
             conn = DriverManager.getConnection(myUrl,
                 "dbuser", "password"); //im good at security I swear :P

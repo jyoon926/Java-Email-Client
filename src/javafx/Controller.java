@@ -17,6 +17,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the fxml application
+ * @author Jacob Yoon, Michael Kassabov, James Egington, Arthur Santelli
+ */
 public class Controller implements Initializable
 {
     @FXML
@@ -36,6 +40,11 @@ public class Controller implements Initializable
     private String username;
     private String password;
 
+    /**
+     * Goes back to the Start scene
+     * @param event The input from the cancel button on the Login scene
+     * @throws Exception
+     */
     public void returnToStart(ActionEvent event) throws Exception
     {
         Parent startParent = FXMLLoader.load(getClass().getResource("Start.fxml"));
@@ -45,6 +54,11 @@ public class Controller implements Initializable
         window.show();
     }
 
+    /**
+     * Goes to the Login scene
+     * @param event The input from the login button on the Start scene
+     * @throws Exception
+     */
     public void startLoginAction(ActionEvent event) throws Exception
     {
         Parent loginParent = FXMLLoader.load(getClass().getResource("Login.fxml"));
@@ -54,6 +68,11 @@ public class Controller implements Initializable
         window.show();
     }
 
+    /**
+     * Goes to the CreateAccount scene
+     * @param event The input from the create account button on the Start scene
+     * @throws Exception
+     */
     public void startCreateAccountAction(ActionEvent event) throws Exception
     {
         Parent createAccountParent = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
@@ -63,6 +82,11 @@ public class Controller implements Initializable
         window.show();
     }
 
+    /**
+     * Goes to the NewMessage scene
+     * @param event The input from the new message button in the Mailbox scene
+     * @throws Exception
+     */
     public void startNewMessageAction(ActionEvent event) throws Exception
     {
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("NewMessage.fxml")));
