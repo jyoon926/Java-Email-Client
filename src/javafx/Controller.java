@@ -35,6 +35,7 @@ public class Controller implements Initializable
     @FXML
     private PasswordField confirmPassword;
 
+    @FXML
     public void returnToStart(ActionEvent event) throws Exception
     {
         Parent startParent = FXMLLoader.load(getClass().getResource("Start.fxml"));
@@ -44,6 +45,7 @@ public class Controller implements Initializable
         window.show();
     }
 
+    @FXML
     public void startLoginAction(ActionEvent event) throws Exception
     {
         Parent loginParent = FXMLLoader.load(getClass().getResource("Login.fxml"));
@@ -53,6 +55,7 @@ public class Controller implements Initializable
         window.show();
     }
 
+    @FXML
     public void startCreateAccountAction(ActionEvent event) throws Exception
     {
         Parent createAccountParent = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
@@ -71,7 +74,7 @@ public class Controller implements Initializable
         System.out.println("2");
         //Change this if statement so that it checks if the account is in the database
         try {
-            if (lm.isLogin(email, password, "login")) {
+            if (lm.isLogin(email, password)) {
                 System.out.println("asdfgt");
                 login(event);
             } else {
@@ -82,9 +85,9 @@ public class Controller implements Initializable
                 alert.showAndWait();
             }
         }
-        catch (Exception e){
-            System.out.println("fdsaasdhfdsgersa");
+        catch (NullPointerException e){
             e.getStackTrace();
+            System.out.println("fdsaasdhfdsgersa");
 
         }
     }
@@ -104,6 +107,7 @@ public class Controller implements Initializable
         }
     }
 
+    @FXML
     public void createAccountAction(ActionEvent event) throws Exception
     {
         String name = newName.getText().toString();
@@ -117,12 +121,7 @@ public class Controller implements Initializable
             alert.setTitle("Information");
             alert.setHeaderText("Welcome to DeppeMail, " + name + ".");
             alert.showAndWait();
-            Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
-            Scene application = new Scene(applicationParent);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(application);
-            window.show();
-            window.setResizable(false);
+            login(event);
         }
         else
         {

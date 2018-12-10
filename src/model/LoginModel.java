@@ -17,6 +17,7 @@ public class LoginModel {
         catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println(connection);
         if(this.connection == null) {
             System.exit(1);
         }
@@ -26,23 +27,27 @@ public class LoginModel {
         return this.connection != null;
     }
 
-    public boolean isLogin(String emailAddress, String password, String division)throws Exception {
+    public boolean isLogin(String emailAddress, String password)throws Exception {
 
-        PreparedStatement pr = null;
-        ResultSet rs = null;
+        PreparedStatement pr;
+        ResultSet rs;
 
-        String sql = "SELECT * FROM login where emailAddress = ? and password = ? and division = ?";
+        String sql = "SELECT * FROM login where emailAddress = ? and password = ?";
 
         try {
 
             pr = this.connection.prepareStatement(sql);
             pr.setString(1, emailAddress);
             pr.setString(2, password);
-            pr.setString(3, division);
 
             rs = pr.executeQuery();
 
             boolean boll1;
+
+            System.out.println(pr + "\n" + rs);
+            if (pr == null && rs == null) {
+                System.out.println("hlkjasfd");
+            }
 
             if (rs.next()) {
                 return true;
@@ -51,10 +56,6 @@ public class LoginModel {
         }
         catch (SQLException e) {
             return false;
-        }
-        finally {
-            pr.close();
-            rs.close();
         }
     }
 }
