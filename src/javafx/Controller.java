@@ -61,6 +61,7 @@ public class Controller implements Initializable
      */
     public void startLoginAction(ActionEvent event) throws Exception
     {
+        //Switch scene to Login scene
         Parent loginParent = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene login = new Scene(loginParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -75,6 +76,7 @@ public class Controller implements Initializable
      */
     public void startCreateAccountAction(ActionEvent event) throws Exception
     {
+        //Switch scene to CreateAccount scene
         Parent createAccountParent = FXMLLoader.load(getClass().getResource("CreateAccount.fxml"));
         Scene createAccount = new Scene(createAccountParent);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -89,6 +91,7 @@ public class Controller implements Initializable
      */
     public void startNewMessageAction(ActionEvent event) throws Exception
     {
+        //Open a new NewMessage window/stage
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("NewMessage.fxml")));
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -96,19 +99,27 @@ public class Controller implements Initializable
         stage.setResizable(false);
     }
 
+    /**
+     * Logs into the account
+     * @param event The input from the login button in the Login scene
+     * @throws Exception
+     */
     public void loginAction(ActionEvent event) throws Exception
     {
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
-
+        //Checks if inputs are valid
         if (!(checkUserString(email) && checkPasswordString(password))) {
+            //Error message
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Failed");
             alert.setHeaderText("Your inputs are not valid.");
             alert.showAndWait();
         }
+        //Checks if email has the correct domain
         else if (email.contains("@") && !email.substring(email.indexOf("@") + 1).equals("deppemail.com"))
         {
+            //Error message
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Failed");
             alert.setHeaderText("Please use '@deppemail' as the domain.");
@@ -116,12 +127,14 @@ public class Controller implements Initializable
         }
         else
         {
+            //Checks if email and passwords exist in database and logs in
             if (DBAccess.authenticateLogin(email, password)) {
                 login(event);
                 name = DBAccess.getName(this.username, this.password);
                 username = email;
                 this.password = DBAccess.hashString(password);
             } else {
+                //Error message
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Failed");
                 alert.setHeaderText("Please enter a correct email and/or password");
@@ -130,31 +143,46 @@ public class Controller implements Initializable
         }
     }
 
+    /**
+     * Goes to the Application scene
+     * @param event The input from the login button in the Mailbox scene
+     * @throws Exception
+     */
     public void login(ActionEvent event) throws IOException
     {
-            Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
-            Scene application = new Scene(applicationParent);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(application);
-            window.show();
-            window.setResizable(false);
+        //Sets scene to Application scene (the mailbox)
+        Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
+        Scene application = new Scene(applicationParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(application);
+        window.show();
+        window.setResizable(false);
     }
 
+    /**
+     * Creates an account
+     * @param event The input from the create account button in the CreateAccount scene
+     * @throws Exception
+     */
     public void createAccountAction(ActionEvent event) throws Exception
     {
         String name = newName.getText().toString();
         String username = newEmail.getText().toString();
         String password = newPassword.getText().toString();
         String passwordRetype = confirmPassword.getText().toString();
+        //Checks if username has a 
         if (username.contains("@"))
         {
+            //Error message
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Failed");
             alert.setHeaderText("Please enter a username, not an email.");
             alert.showAndWait();
         } 
+        //Checks if inputs are valid and have no unallowed characters
         else if (!(checkNameString(name) && checkUserString(username) && checkPasswordString(password))) 
         {
+            //Error message
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Failed");
             alert.setHeaderText("Your inputs are not valid. Try again.");
@@ -164,6 +192,7 @@ public class Controller implements Initializable
         {
             String addAccountOutput = DBAccess.addAccount(name, username, password);
             
+            //Checks if username already exists in database
             if (addAccountOutput.equals("user already exists"))
             {
                 Alert alert = new Alert(AlertType.INFORMATION);
@@ -173,6 +202,7 @@ public class Controller implements Initializable
             }
             else if (addAccountOutput.equals("success"))
             {
+                //Sets pivs to the name, username, and password of the created account
                 this.name = name;
                 this.username = username;
                 this.password = DBAccess.hashString(password);
@@ -180,6 +210,8 @@ public class Controller implements Initializable
                 alert.setTitle("Information");
                 alert.setHeaderText("Welcome to DeppeMail, " + name + ".");
                 alert.showAndWait();
+                
+                //Set scene to Application scene (the mailbox)
                 Parent applicationParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
                 Scene application = new Scene(applicationParent);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -189,6 +221,7 @@ public class Controller implements Initializable
             }
             else
             {
+                //When there is an unknown error
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Failed");
                 alert.setHeaderText("An unknown error occurred. Try again.");
@@ -210,10 +243,18 @@ public class Controller implements Initializable
     {
     }
     
+    /**
+     * Checks a username string for unallowed characters
+     * @param String The username to be checked
+     */
     public static boolean checkUserString(String str) {
         return str.matches("^\\w+([-+.']\\w+)*$");
     }
-
+    
+    /**
+     * Checks a password string for unallowed characters
+     * @param String The password to be checked
+     */
     public static boolean checkPasswordString(String str) {
         //general check to prevent unwanted characters
         boolean generalCheck = str.matches("^\\w+([-+.'\\[\\]]\\w*)*$");
@@ -223,6 +264,10 @@ public class Controller implements Initializable
         return generalCheck && !bracketCheck;
     }  
     
+    /**
+     * Checks a name string for unallowed characters
+     * @param String The name to be checked
+     */
     public static boolean checkNameString(String str) {
         return str.matches("^[\\p{L}\\s'.-]+$");
     }
