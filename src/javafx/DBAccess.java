@@ -15,13 +15,11 @@ public class DBAccess
         try
         {
             // create database connection
-            String myDriver =
-                "com.mysql.cj.jdbc.Driver";
-            //this URL will change when server is hosted somewhere
-            String myUrl = "jdbc:mysql://10.180.1.207";
+            String myDriver = "com.mysql.cj.jdbc.Driver";
+            String myUrl = "jdbc:mysql://67.241.76.237";
             Class.forName(myDriver);
             conn = DriverManager.getConnection(myUrl,
-                "dbuser", "password"); //im good at security I swear :P
+                "deppemail_user", "tempPass"); //im good at security I swear :P
 
         }
         catch (Exception e)
@@ -36,7 +34,7 @@ public class DBAccess
         {
             //create a statement
             PreparedStatement st = conn.prepareStatement(
-                "SELECT * FROM users.users WHERE user = ?"
+                "SELECT * FROM deppemail.users WHERE user = ?"
             );
             st.setString(1, user_);
 
@@ -51,13 +49,13 @@ public class DBAccess
             st.close();
 
             st = conn.prepareStatement(
-                "INSERT INTO users.users (name, user, password) VALUES (?, ?, ?)"
+                "INSERT INTO deppemail.users (name, user, password) VALUES (?, ?, ?)"
             );
             st.setString(1, name_);
             st.setString(2, user_);
             st.setString(3, hashString(password_));
 
-            //create user;
+            //create user
             st.executeUpdate();
 
             st.close();
@@ -71,29 +69,29 @@ public class DBAccess
         }
     }
 
-    public static boolean authenticateLogin(String user_,
-        String password_)
+    public static boolean authenticateLogin(String user_, String password_)
     {
         try
         {
 
             //create a statement
             PreparedStatement st = conn.prepareStatement(
-                "SELECT * FROM users.users WHERE user = ?"
+                "SELECT * FROM deppemail.users WHERE user = ?"
             );
             st.setString(1, user_);
 
             //execute query, and get a resultset
             ResultSet rs = st.executeQuery();
 
+            //retreive password hash
             String password = null;
-
             while (rs.next())
             {
                 password = rs.getString("password");
             }
             st.close();
 
+            //check if password hashes match
             if (password.equals(hashString(password_)))
             {
                 return true;
@@ -108,18 +106,17 @@ public class DBAccess
         }
     }
 
-    public static boolean removeAccount(String user_,
-        String password_)
+    public static boolean removeAccount(String user_, String password_)
     {
 
         try
         {
-
+        	//check user authentication first
             if (authenticateLogin(user_, password_))
             {
                 //create a statement
                 PreparedStatement st = conn.prepareStatement(
-                    "DELETE FROM users.users WHERE user = ? AND password = ?"
+                    "DELETE FROM deppemail.users WHERE user = ? AND password = ?"
                 );
                 st.setString(1, user_);
                 st.setString(2, hashString(password_));
@@ -147,19 +144,23 @@ public class DBAccess
 
         try
         {
-            PreparedStatement st = conn.prepareStatement("SELECT * FROM users.users WHERE user = ? AND password = ?");
+        	//query database for UID
+            PreparedStatement st = conn.prepareStatement(
+                "SELECT * FROM deppemail.users WHERE user = ? AND password = ?"
+            );
             st.setString(1, user);
             st.setString(2, hashString(password));
-            
+
             ResultSet rs = st.executeQuery();
-            
+
+            //retrieve userID from query ouput
             String uid = null;
-            
-            while(rs.next()) {
+            while (rs.next())
+            {
                 uid = rs.getString("userid");
             }
             st.close();
-            
+
             return uid;
         }
         catch (Exception e)
@@ -169,23 +170,27 @@ public class DBAccess
         }
     }
 
-    public static String getName(String user, String password) 
+    public static String getName(String user, String password)
     {
         try
         {
-            PreparedStatement st = conn.prepareStatement("SELECT * FROM users.users WHERE user = ? AND password = ?");
+        	//query database for name
+            PreparedStatement st = conn.prepareStatement(
+                "SELECT * FROM deppemail.users WHERE user = ? AND password = ?"
+            );
             st.setString(1, user);
             st.setString(2, hashString(password));
-            
+
             ResultSet rs = st.executeQuery();
-            
+
+            //retrieve name from query output
             String name = null;
-            
-            while(rs.next()) {
+            while (rs.next())
+            {
                 name = rs.getString("name");
             }
             st.close();
-            
+
             return name;
         }
         catch (Exception e)
@@ -194,7 +199,7 @@ public class DBAccess
             return "error";
         }
     }
-    
+
     public static String hashString(String str)
     {
 
