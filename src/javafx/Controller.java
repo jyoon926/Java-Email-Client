@@ -170,7 +170,7 @@ public class Controller implements Initializable
         String username = newEmail.getText().toString();
         String password = newPassword.getText().toString();
         String passwordRetype = confirmPassword.getText().toString();
-        //Checks if username has a 
+        //Checks if username has a '@'
         if (username.contains("@"))
         {
             //Error message
@@ -178,8 +178,8 @@ public class Controller implements Initializable
             alert.setTitle("Failed");
             alert.setHeaderText("Please enter a username, not an email.");
             alert.showAndWait();
-        } 
-        //Checks if inputs are valid and have no unallowed characters
+        }
+        //Checks if any input have unwanted characters
         else if (!(checkNameString(name) && checkUserString(username) && checkPasswordString(password))) 
         {
             //Error message
@@ -188,6 +188,7 @@ public class Controller implements Initializable
             alert.setHeaderText("Your inputs are not valid. Try again.");
             alert.showAndWait();
         }
+        //Checks if inputs are valid and have no unallowed characters
         else if (name.length() > 0 && username.length() > 0 && password.length() > 0 && password.equals(passwordRetype))
         {
             String addAccountOutput = DBAccess.addAccount(name, username, password);
