@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.DBAccess;
+
 /**
  * Controls the fxml application
  * @author Jacob Yoon, Michael Kassabov, James Egington, Arthur Santelli
@@ -246,7 +248,7 @@ public class Controller implements Initializable
     
     /**
      * Checks a username string for unallowed characters
-     * @param String The username to be checked
+     * @param str The username to be checked
      */
     public static boolean checkUserString(String str) {
         return str.matches("^\\w+([-+.']\\w+)*$");
@@ -254,7 +256,7 @@ public class Controller implements Initializable
     
     /**
      * Checks a password string for unallowed characters
-     * @param String The password to be checked
+     * @param str The password to be checked
      */
     public static boolean checkPasswordString(String str) {
         //general check to prevent unwanted characters
@@ -267,7 +269,7 @@ public class Controller implements Initializable
     
     /**
      * Checks a name string for unallowed characters
-     * @param String The name to be checked
+     * @param str The name to be checked
      */
     public static boolean checkNameString(String str) {
         return str.matches("^[\\p{L}\\s'.-]+$");
