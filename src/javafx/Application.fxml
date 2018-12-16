@@ -22,7 +22,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <Button layoutX="627.0" layoutY="15.0" mnemonicParsing="false" onAction="#returnToStart" style="-fx-background-color: white;" text="Log Out" textFill="#1d2737" />
+            <Button layoutX="619.0" layoutY="15.0" mnemonicParsing="false" onAction="#returnToStart" style="-fx-background-color: white;" text="Log Out" textFill="#1d2737" />
          </children>
       </AnchorPane>
       <HBox layoutY="54.0" prefHeight="546.0" prefWidth="700.0">
