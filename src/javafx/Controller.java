@@ -94,11 +94,12 @@ public class Controller implements Initializable
     public void startNewMessageAction(ActionEvent event) throws Exception
     {
         //Open a new NewMessage window/stage
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("NewMessage.fxml")));
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        stage.setResizable(false);
+        Parent applicationParent = FXMLLoader.load(getClass().getResource("NewMessage.fxml"));
+        Scene application = new Scene(applicationParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(application);
+        window.show();
+        window.setResizable(false);
     }
 
     /**
@@ -130,12 +131,15 @@ public class Controller implements Initializable
         else
         {
             //Checks if email and passwords exist in database and logs in
-            if (DBAccess.authenticateLogin(email, password)) {
+            if (DBAccess.authenticateLogin(email, password))
+            {
                 login(event);
                 name = DBAccess.getName(this.username, this.password);
                 username = email;
                 this.password = DBAccess.hashString(password);
-            } else {
+            }
+            else
+            {
                 //Error message
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Failed");
@@ -250,7 +254,8 @@ public class Controller implements Initializable
      * Checks a username string for unallowed characters
      * @param str The username to be checked
      */
-    public static boolean checkUserString(String str) {
+    public static boolean checkUserString(String str)
+    {
         return str.matches("^\\w+([-+.']\\w+)*$");
     }
     
@@ -258,7 +263,8 @@ public class Controller implements Initializable
      * Checks a password string for unallowed characters
      * @param str The password to be checked
      */
-    public static boolean checkPasswordString(String str) {
+    public static boolean checkPasswordString(String str)
+    {
         //general check to prevent unwanted characters
         boolean generalCheck = str.matches("^\\w+([-+.'\\[\\]]\\w*)*$");
         //check for unsavory things in brackets or dot after brackets
@@ -271,7 +277,8 @@ public class Controller implements Initializable
      * Checks a name string for unallowed characters
      * @param str The name to be checked
      */
-    public static boolean checkNameString(String str) {
+    public static boolean checkNameString(String str)
+    {
         return str.matches("^[\\p{L}\\s'.-]+$");
     }
 }

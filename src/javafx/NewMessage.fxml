@@ -23,8 +23,8 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <Button layoutX="543.0" layoutY="15.0" mnemonicParsing="false" onAction="#returnToStart" style="-fx-background-color: white;" text="Send" textFill="#1d2737" />
-            <Button fx:id="deleteButton" layoutX="478.0" layoutY="15.0" mnemonicParsing="false" onAction="#deleteMessage" style="-fx-background-color: white;" text="Delete" textFill="#1d2737" />
+            <Button layoutX="535.0" layoutY="15.0" mnemonicParsing="false" onAction="#returnToStart" style="-fx-background-color: white;" text="Send" textFill="#1d2737" />
+            <Button fx:id="deleteButton" layoutX="470.0" layoutY="15.0" mnemonicParsing="false" onAction="#deleteMessage" style="-fx-background-color: white;" text="Delete" textFill="#1d2737" />
          </children>
       </AnchorPane>
       <VBox maxHeight="446.0" maxWidth="600.0" minHeight="446.0" minWidth="600.0" prefHeight="446.0" prefWidth="600.0" style="-fx-background-color: #0b3c5d;" AnchorPane.topAnchor="54.0">
