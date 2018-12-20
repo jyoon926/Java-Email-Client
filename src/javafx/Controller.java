@@ -94,12 +94,11 @@ public class Controller implements Initializable
     public void startNewMessageAction(ActionEvent event) throws Exception
     {
         //Open a new NewMessage window/stage
-        Parent applicationParent = FXMLLoader.load(getClass().getResource("NewMessage.fxml"));
-        Scene application = new Scene(applicationParent);
+        Parent createAccountParent = FXMLLoader.load(getClass().getResource("NewMessage.fxml"));
+        Scene createAccount = new Scene(createAccountParent);
         Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
-        window.setScene(application);
+        window.setScene(createAccount);
         window.show();
-        window.setResizable(false);
     }
 
     /**

@@ -34,14 +34,14 @@ public class MessageController implements Initializable
 
     /**
      * Deletes the new message and returns to the mailbox
-     * @param event The input from the delete button
+     * @param event The input from the delete and send buttons
      */
-    public void deleteMessage(ActionEvent event) throws IOException
+    public void returnToApplication(ActionEvent event) throws IOException
     {
-        Parent startParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
-        Scene start = new Scene(startParent);
-        Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
-        window.setScene(start);
+        Parent createAccountParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
+        Scene createAccount = new Scene(createAccountParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(createAccount);
         window.show();
     }
 
