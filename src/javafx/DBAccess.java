@@ -28,7 +28,7 @@ public class DBAccess
             String myUrl = "jdbc:mysql://10.180.4.156";
             Class.forName(myDriver);
             conn = DriverManager.getConnection(myUrl,
-                "deppemail_user", "tempPass"); //im good at security I swear :P
+                    "deppemail_user", "tempPass"); //im good at security I swear :P
 
         }
         catch (Exception e)
@@ -50,7 +50,7 @@ public class DBAccess
         {
             //create a statement
             PreparedStatement st = conn.prepareStatement(
-                "SELECT * FROM deppemail.users WHERE user = ?"
+                    "SELECT * FROM deppemail.users WHERE user = ?"
             );
             st.setString(1, user_);
 
@@ -65,7 +65,7 @@ public class DBAccess
             st.close();
 
             st = conn.prepareStatement(
-                "INSERT INTO deppemail.users (name, user, password) VALUES (?, ?, ?)"
+                    "INSERT INTO deppemail.users (name, user, password) VALUES (?, ?, ?)"
             );
             st.setString(1, name_);
             st.setString(2, user_);
@@ -98,7 +98,7 @@ public class DBAccess
 
             //create a statement
             PreparedStatement st = conn.prepareStatement(
-                "SELECT * FROM deppemail.users WHERE user = ?"
+                    "SELECT * FROM deppemail.users WHERE user = ?"
             );
             st.setString(1, user_);
 
@@ -139,12 +139,12 @@ public class DBAccess
 
         try
         {
-        	//check user authentication first
+            //check user authentication first
             if (authenticateLogin(user_, password_))
             {
                 //create a statement
                 PreparedStatement st = conn.prepareStatement(
-                    "DELETE FROM deppemail.users WHERE user = ? AND password = ?"
+                        "DELETE FROM deppemail.users WHERE user = ? AND password = ?"
                 );
                 st.setString(1, user_);
                 st.setString(2, hashString(password_));
@@ -178,9 +178,9 @@ public class DBAccess
 
         try
         {
-        	//query database for UID
+            //query database for UID
             PreparedStatement st = conn.prepareStatement(
-                "SELECT * FROM deppemail.users WHERE user = ? AND password = ?"
+                    "SELECT * FROM deppemail.users WHERE user = ? AND password = ?"
             );
             st.setString(1, user);
             st.setString(2, hashString(password));
@@ -214,9 +214,9 @@ public class DBAccess
     {
         try
         {
-        	//query database for name
+            //query database for name
             PreparedStatement st = conn.prepareStatement(
-                "SELECT * FROM deppemail.users WHERE user = ? AND password = ?"
+                    "SELECT * FROM deppemail.users WHERE user = ? AND password = ?"
             );
             st.setString(1, user);
             st.setString(2, hashString(password));
@@ -253,15 +253,15 @@ public class DBAccess
         try
         {
             MessageDigest md = MessageDigest.getInstance(
-                "MD5");
+                    "MD5");
             md.update(str.getBytes());
             byte[] bytes = md.digest();
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < bytes.length; i++)
             {
                 sb.append(Integer.toString((bytes[i] &
-                    0xff) + 0x100, 16).substring(
-                    1));
+                        0xff) + 0x100, 16).substring(
+                        1));
             }
             generatedPassword = sb.toString();
         }

@@ -38,9 +38,9 @@ public class MessageController implements Initializable
      */
     public void deleteMessage(ActionEvent event) throws IOException
     {
-        Parent startParent = FXMLLoader.load(getClass().getResource("Start.fxml"));
+        Parent startParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
         Scene start = new Scene(startParent);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
         window.setScene(start);
         window.show();
     }
