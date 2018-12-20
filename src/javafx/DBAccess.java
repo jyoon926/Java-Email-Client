@@ -4,19 +4,28 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
+/**
+ * Allows communication with database
+ * @author Michael Kassabov
+ * @version December 20th, 2018
+ */
 public class DBAccess
 {
 
     private static Connection conn;
 
-    //needs to be run first
+    /**
+     * creates a connection to the database.
+     * needs to be run first.
+     */
     public static void startConnection()
     {
         try
         {
             // create database connection
             String myDriver = "com.mysql.cj.jdbc.Driver";
-            String myUrl = "jdbc:mysql://67.241.76.237";
+            //String myUrl = "jdbc:mysql://67.241.76.237";
+            String myUrl = "jdbc:mysql://10.180.4.156";
             Class.forName(myDriver);
             conn = DriverManager.getConnection(myUrl,
                 "deppemail_user", "tempPass"); //im good at security I swear :P
@@ -28,6 +37,13 @@ public class DBAccess
         }
     }
 
+    /**
+     * Adds a new account to the database.
+     * @param name_ the name of the new user
+     * @param user_ the username of the new user
+     * @param password_ the password of the new users
+     * @return status of adding account to database
+     */
     public static String addAccount(String name_, String user_, String password_)
     {
         try
@@ -69,6 +85,12 @@ public class DBAccess
         }
     }
 
+    /**
+     * authenticates the login for a user.
+     * @param user_ login username
+     * @param password_ login password
+     * @return boolean of login status
+     */
     public static boolean authenticateLogin(String user_, String password_)
     {
         try
@@ -106,6 +128,12 @@ public class DBAccess
         }
     }
 
+    /**
+     * permanently deletes an account from the database
+     * @param user_ username to delete
+     * @param password_ password to delete
+     * @return status of account deletion
+     */
     public static boolean removeAccount(String user_, String password_)
     {
 
@@ -139,6 +167,12 @@ public class DBAccess
 
     }
 
+    /**
+     * Returns the userID of the user.
+     * @param user username
+     * @param password password
+     * @return the userID of the user
+     */
     public static String getUID(String user, String password)
     {
 
@@ -170,6 +204,12 @@ public class DBAccess
         }
     }
 
+    /**
+     * Returns the name of the user.
+     * @param user username
+     * @param password password
+     * @return the name of the user
+     */
     public static String getName(String user, String password)
     {
         try
@@ -200,14 +240,14 @@ public class DBAccess
         }
     }
 
+    /**
+     * returns a hashed verion of an input string
+     * uses MD5 hash
+     * @param str string to hash
+     * @return hashed string
+     */
     public static String hashString(String str)
     {
-
-        /*
-         * TODO:
-         * add salting
-         * switch to SHA-256
-         */
 
         String generatedPassword = null;
         try

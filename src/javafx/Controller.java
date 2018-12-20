@@ -21,7 +21,7 @@ import javafx.DBAccess;
 
 /**
  * Controls the fxml application
- * @author Jacob Yoon, Michael Kassabov, James Egington, Arthur Santelli
+ * @author Jacob Yoon
  */
 public class Controller implements Initializable
 {

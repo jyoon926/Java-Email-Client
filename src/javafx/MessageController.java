@@ -16,6 +16,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the NewMessage fxml application/scene
+ * @author Jacob Yoon
+ * @version 12.17.18
+ */
 public class MessageController implements Initializable
 {
     @FXML
@@ -27,6 +32,10 @@ public class MessageController implements Initializable
     @FXML
     private Button deleteButton;
 
+    /**
+     * Deletes the new message and returns to the mailbox
+     * @param event The input from the delete button
+     */
     public void deleteMessage(ActionEvent event) throws IOException
     {
         Parent startParent = FXMLLoader.load(getClass().getResource("Start.fxml"));
