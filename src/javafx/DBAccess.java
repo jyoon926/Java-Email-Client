@@ -24,8 +24,8 @@ public class DBAccess
         {
             // create database connection
             String myDriver = "com.mysql.cj.jdbc.Driver";
-            //String myUrl = "jdbc:mysql://67.241.76.237";
-            String myUrl = "jdbc:mysql://10.180.4.156";
+            String myUrl = "jdbc:mysql://67.241.76.237";
+            //String myUrl = "jdbc:mysql://10.180.4.156";
             Class.forName(myDriver);
             conn = DriverManager.getConnection(myUrl,
                     "deppemail_user", "tempPass"); //im good at security I swear :P

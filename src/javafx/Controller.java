@@ -87,21 +87,6 @@ public class Controller implements Initializable
     }
 
     /**
-     * Goes to the NewMessage scene
-     * @param event The input from the new message button in the Mailbox scene
-     * @throws Exception
-     */
-    public void startNewMessageAction(ActionEvent event) throws Exception
-    {
-        //Open a new NewMessage window/stage
-        Parent createAccountParent = FXMLLoader.load(getClass().getResource("NewMessage.fxml"));
-        Scene createAccount = new Scene(createAccountParent);
-        Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
-        window.setScene(createAccount);
-        window.show();
-    }
-
-    /**
      * Logs into the account
      * @param event The input from the login button in the Login scene
      * @throws Exception
@@ -111,7 +96,7 @@ public class Controller implements Initializable
         String email = textEmail.getText().toString();
         String password = textPassword.getText().toString();
         //Checks if inputs are valid
-        if (email.equals("admin") && password.equals("admin"))
+        if (email.equals("test") && password.equals("test"))
             login(event);
         else if (!(checkUserString(email) && checkPasswordString(password)))
         {

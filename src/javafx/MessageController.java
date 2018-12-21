@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -38,11 +39,17 @@ public class MessageController implements Initializable
      */
     public void returnToApplication(ActionEvent event) throws IOException
     {
-        Parent createAccountParent = FXMLLoader.load(getClass().getResource("Application.fxml"));
-        Scene createAccount = new Scene(createAccountParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(createAccount);
-        window.show();
+        window.close();
+    }
+
+    /**
+     * Deletes the new message and returns to the mailbox
+     * @param event The input from the delete and send buttons
+     */
+    public void sendMessage(ActionEvent event) throws IOException
+    {
+
     }
 
     @Override

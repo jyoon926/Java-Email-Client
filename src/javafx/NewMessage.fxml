@@ -23,7 +23,7 @@
                   <Insets left="20.0" />
                </padding>
             </Label>
-            <Button layoutX="535.0" layoutY="15.0" mnemonicParsing="false" onAction="#returnToApplication" style="-fx-background-color: white;" text="Send" textFill="#1d2737" />
+            <Button layoutX="535.0" layoutY="15.0" mnemonicParsing="false" onAction="#sendMessage" style="-fx-background-color: white;" text="Send" textFill="#1d2737" />
             <Button fx:id="deleteButton" layoutX="470.0" layoutY="15.0" mnemonicParsing="false" onAction="#returnToApplication" style="-fx-background-color: white;" text="Delete" textFill="#1d2737" />
          </children>
       </AnchorPane>
