@@ -67,7 +67,7 @@ public class MailSendReceive
             
             while (rs.next())
             {
-                emails.add(rs.getString("sender") + " | " + rs.getString("msg"));
+                emails.add(rs.getString("sender") + ": " + rs.getString("msg"));
             }
             
             st.close();

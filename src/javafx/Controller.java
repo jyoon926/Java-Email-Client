@@ -48,10 +48,10 @@ public class Controller implements Initializable
     private Label label;
 
     private String name;
-    private String username;
+    private static String username;
     private String password;
 
-    private String messages;
+    private static String messages;
     /**
      * Goes back to the Start scene
      * @param event The input from the cancel button on the Login scene
@@ -355,6 +355,7 @@ public class Controller implements Initializable
                 this.messages = MailSendReceive.receiveMessage(username).get(i);
             }
         }
+        System.out.print(messages);
     }
 
     /**
