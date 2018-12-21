@@ -41,12 +41,17 @@ public class Controller implements Initializable
     @FXML
     private Button checkButton;
     @FXML
+    private TextField inputUsername;
+    @FXML
+    private PasswordField inputPassword;
+    @FXML
     private Label label;
 
     private String name;
     private String username;
     private String password;
 
+    private String messages;
     /**
      * Goes back to the Start scene
      * @param event The input from the cancel button on the Login scene
@@ -98,8 +103,9 @@ public class Controller implements Initializable
      */
     public void loginAction(ActionEvent event) throws Exception
     {
-        String email = textEmail.getText().toString();
-        String password = textPassword.getText().toString();
+        String email = textEmail.getText();
+        System.out.println(email);
+        String password = textPassword.getText();
         //Checks if inputs are valid
         if (email.equals("test") && password.equals("test"))
             login(event);
@@ -320,23 +326,43 @@ public class Controller implements Initializable
         stage.show();
     }
 
+    public void openInputInfo(ActionEvent event) throws Exception
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("InputInfo.fxml"));
+        Stage stage = new Stage();
+        stage.setTitle("New Message");
+        stage.setScene(new Scene(root, 600, 500));
+        stage.show();
+    }
+
     /**
      * Runs checkEmail method in CheckEmail class to check for new messages
      * @param event The input from the refresh button
      * @throws Exception
      */
-    public void checkEmail(ActionEvent event) throws Exception {
+    public void checkEmail(ActionEvent event) throws Exception
+    {
         Parent root = FXMLLoader.load(getClass().getResource("Mailbox.fxml"));
         Stage stage = new Stage();
         stage.setTitle("New Message");
         stage.setScene(new Scene(root, 400, 500));
         stage.show();
-        String messages = "No Messages!";
-        if (MailSendReceive.receiveMessage(username).size() > 0) {
-            for (int i = 0; i < (MailSendReceive.receiveMessage(username).size()); i++) {
-                messages = MailSendReceive.receiveMessage(username).get(i) + "/n";
+        messages = "No Messages!";
+        if (MailSendReceive.receiveMessage(username).size() > 0)
+        {
+            for (int i = 0; i < (MailSendReceive.receiveMessage(username).size()); i++)
+            {
+                this.messages = MailSendReceive.receiveMessage(username).get(i);
             }
         }
-        label.setText(messages);
+    }
+
+    /**
+     * Shows messages
+     * @param event
+     */
+    public void showMessage(ActionEvent event)
+    {
+        label.setText("" + messages);
     }
 }
