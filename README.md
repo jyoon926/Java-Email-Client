@@ -1,0 +1,4 @@
+# Deppe Mail
+
+## Description
+This program connects to a mySQL database running at Arthur Santelli’s house. The start page prompts the user, through a Start.fxml file, with a Deppe mail. On the page there 2 options: “create account” and “log in”. First time users must create an account before they can access the log in. With this selection, a new window pops up with 4 textboxes – name, username, password and confirm password. The password and confirm password appear as asterisks in place of characters. Once the user has created an account, the inbox/outbox email page opens, allowing the user to send or receive email to/from anyone. After logging out of the Deppemail page, if the user wants to access their email account again, they click the log in button and enter their username and password for access. 
