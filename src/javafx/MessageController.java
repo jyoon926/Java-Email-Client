@@ -27,7 +27,7 @@ public class MessageController implements Initializable
     @FXML
     private TextField recipients;
     @FXML
-    private TextField subject;
+    private TextField username;
     @FXML
     private TextArea message;
     @FXML
@@ -49,8 +49,7 @@ public class MessageController implements Initializable
      */
     public void sendMessage(ActionEvent event) throws IOException
     {
-        Controller controller = new Controller();
-        MailSendReceive.sendMessage(controller.getUsername(), recipients.getText(), message.getText());
+        MailSendReceive.sendMessage(username.getText(), recipients.getText(), message.getText());
         Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
         window.close();
     }
