@@ -26,7 +26,7 @@ import javafx.DBAccess;
 import javax.swing.*;
 
 /**
- * Controls the fxml application
+ * Controls Application.fxml
  * @author Jacob Yoon
  */
 public class MailboxController implements Initializable
