@@ -35,7 +35,7 @@ public class MessageController implements Initializable
 
     /**
      * Deletes the new message and returns to the mailbox
-     * @param event The input from the delete and send buttons
+     * @param event The input from the delete button
      */
     public void returnToApplication(ActionEvent event) throws IOException
     {
@@ -44,12 +44,15 @@ public class MessageController implements Initializable
     }
 
     /**
-     * Deletes the new message and returns to the mailbox
-     * @param event The input from the delete and send buttons
+     * Sends the new message and returns to the mailbox
+     * @param event The input from the send button
      */
     public void sendMessage(ActionEvent event) throws IOException
     {
-
+        Controller controller = new Controller();
+        SendMail message = new SendMail(recipients, controller.getUsername() + "@deppemail.com", controller.getUsername(), controller.getPassword(), );
+        message.initializeSmtp(true, true, 1);
+        message.emailThatMessage(this.message.getText(), subject.getText());
     }
 
     @Override

@@ -267,4 +267,22 @@ public class Controller implements Initializable
     {
         return str.matches("^[\\p{L}\\s'.-]+$");
     }
+
+    /**
+     * Returns the username
+     * @return The username
+     */
+    public java.lang.String getUsername()
+    {
+        return username;
+    }
+
+    /**
+     * Returns the password
+     * @return The password
+     */
+    public String getPassword()
+    {
+        return password;
+    }
 }

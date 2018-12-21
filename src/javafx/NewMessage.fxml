@@ -29,7 +29,7 @@
       </AnchorPane>
       <VBox maxHeight="446.0" maxWidth="600.0" minHeight="446.0" minWidth="600.0" prefHeight="446.0" prefWidth="600.0" style="-fx-background-color: #0b3c5d;" AnchorPane.topAnchor="54.0">
          <children>
-            <TextField fx:id="recipients" promptText="Recipients" style="-fx-background-color: white; -fx-border-color: white;">
+            <TextField fx:id="recipients" promptText="Recipient" style="-fx-background-color: white; -fx-border-color: white;">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin></TextField>
