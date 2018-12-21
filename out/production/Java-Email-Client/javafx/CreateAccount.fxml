@@ -10,46 +10,54 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="320.0" prefWidth="400.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.Controller">
+<AnchorPane id="AnchorPane" minHeight="450.0" minWidth="400.0" prefHeight="450.0" prefWidth="500.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.Controller">
    <children>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="300.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #1d2737;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" text="Create Account" textAlignment="CENTER">
+            <Label alignment="CENTER" text="Create" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                <font>
-                  <Font size="40.0" />
+                  <Font size="81.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="-50.0" top="-25.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="newName" promptText="Full Name" style="-fx-background-color: #ddd;">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="60.0" text="Account" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font size="81.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="newName" promptText="Full Name" style="-fx-background-color: white;">
                <VBox.margin>
                   <Insets bottom="7.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="newEmail" promptText="Username" style="-fx-background-color: #ddd;">
+            <TextField fx:id="newEmail" promptText="Username" style="-fx-background-color: white;">
                <VBox.margin>
                   <Insets bottom="7.0" />
                </VBox.margin>
             </TextField>
-            <PasswordField fx:id="newPassword" promptText="Password" style="-fx-background-color: #ddd; -fx-border-radius: 0px;">
+            <PasswordField fx:id="newPassword" promptText="Password" style="-fx-background-color: white;">
                <VBox.margin>
                   <Insets bottom="7.0" />
                </VBox.margin>
             </PasswordField>
-            <PasswordField fx:id="confirmPassword" promptText="Confirm Password" style="-fx-background-color: #ddd; -fx-border-radius: 0px;">
+            <PasswordField fx:id="confirmPassword" promptText="Confirm Password" style="-fx-background-color: white;">
                <VBox.margin>
                   <Insets bottom="7.0" />
                </VBox.margin>
             </PasswordField>
             <HBox>
                <children>
-                  <Button cacheShape="false" mnemonicParsing="false" onAction="#createAccountAction" style="-fx-background-color: black; -fx-padding: 10px 30px;" text="Create Account" textFill="WHITE">
+                  <Button cacheShape="false" mnemonicParsing="false" onAction="#createAccountAction" style="-fx-background-color: white; -fx-padding: 10px 30px;" text="Create Account" textFill="#1d2737">
                      <font>
                         <Font name="Helvetica" size="13.0" />
                      </font>
                   </Button>
-                  <Button cacheShape="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#returnToStart" style="-fx-background-color: black; -fx-padding: 10px 30px;" text="Cancel" textFill="WHITE">
+                  <Button cacheShape="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#returnToStart" style="-fx-background-color: white; -fx-padding: 10px 30px;" text="Cancel" textFill="#1d2737">
                      <font>
                         <Font name="Helvetica" size="13.0" />
                      </font>
@@ -59,7 +67,7 @@
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets top="15.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </HBox>
          </children>

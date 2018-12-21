@@ -7,21 +7,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" minHeight="200.0" minWidth="200.0" prefHeight="300" prefWidth="400" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.Controller">
+<AnchorPane id="AnchorPane" minHeight="300.0" minWidth="450.0" prefHeight="350.0" prefWidth="500.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.Controller">
     <children>
-      <VBox alignment="CENTER" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #1d2737;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-              <Label alignment="CENTER" text="DeppeMail" textAlignment="CENTER">
+              <Label alignment="CENTER" text="DeppeMail" textAlignment="CENTER" textFill="WHITE">
                   <font>
-                      <Font size="50.0" />
+                      <Font size="81.0" />
                   </font>
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
               </Label>
-              <Button alignment="CENTER" cacheShape="false" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startCreateAccountAction" style="-fx-background-color: black; -fx-padding: 10px 30px;" text="Create Account" textFill="WHITE">
+              <Button alignment="CENTER" cacheShape="false" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startCreateAccountAction" style="-fx-background-color: white; -fx-padding: 10px 30px;" text="Create Account" textFill="#1d2737">
                   <font>
-                      <Font name="Helvetica" size="13.0" />
+                      <Font size="13.0" />
                   </font>
                <opaqueInsets>
                   <Insets />
@@ -30,9 +30,9 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button cacheShape="false" mnemonicParsing="false" onAction="#startLoginAction" style="-fx-background-color: black; -fx-padding: 10px 30px;" text="Login" textFill="WHITE">
+            <Button cacheShape="false" mnemonicParsing="false" onAction="#startLoginAction" style="-fx-background-color: white; -fx-padding: 10px 30px;" text="Login" textFill="#1d2737">
                <font>
-                  <Font name="Helvetica" size="13.0" />
+                  <Font size="13.0" />
                </font>
                <opaqueInsets>
                   <Insets top="5.0" />
