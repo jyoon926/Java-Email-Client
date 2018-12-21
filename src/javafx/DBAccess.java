@@ -12,8 +12,9 @@ import java.sql.*;
 public class DBAccess
 {
 
-    private static Connection conn;
+	public static Connection conn;
 
+    
     /**
      * creates a connection to the database.
      * needs to be run first.
