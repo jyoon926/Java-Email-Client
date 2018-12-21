@@ -272,7 +272,7 @@ public class Controller implements Initializable
      * Returns the username
      * @return The username
      */
-    public java.lang.String getUsername()
+    public String getUsername()
     {
         return username;
     }

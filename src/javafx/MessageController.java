@@ -50,9 +50,9 @@ public class MessageController implements Initializable
     public void sendMessage(ActionEvent event) throws IOException
     {
         Controller controller = new Controller();
-        SendMail message = new SendMail(recipients, controller.getUsername() + "@deppemail.com", controller.getUsername(), controller.getPassword(), );
-        message.initializeSmtp(true, true, 1);
-        message.emailThatMessage(this.message.getText(), subject.getText());
+        MailSendReceive.sendMessage(controller.getUsername(), recipients.getText(), message.getText());
+        Stage window = (Stage)((Node) event.getSource()).getScene().getWindow();
+        window.close();
     }
 
     @Override

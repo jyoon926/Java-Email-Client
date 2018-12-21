@@ -12,22 +12,6 @@ import java.util.ArrayList;
  */
 public class MailSendReceive
 {
-
-	/**
-	 * jacob delete THIS
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		DBAccess.startConnection();
-		//sendMessage("michael.kassabov", "jacob.yoon", "testing");
-		//sendMessage("michael.kassabov", "jacob.yoon", "testing2");
-		//sendMessage("michael.kassabov", "jacob.yoon", "testing3");
-		
-		ArrayList<String> msgs = receiveMessage("jacob.yoon");
-		for(int i = 0; i < msgs.size(); i++) {   
-		    System.out.println(msgs.get(i));
-		}  
-	}
 	
 	/**
 	 * sends a messgae to be stored on a serrver and retreived later.
