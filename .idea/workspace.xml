@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6747a1f0-5a58-4b1b-879d-decb762a5fd6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/javafx/CheckEmail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/javafx/SendMail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java-Email-Client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Java-Email-Client.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/javafx/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/javafx/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/javafx/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/javafx/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/javafx/NewMessage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/javafx/NewMessage.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/javafx/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+            <state relative-caret-position="187">
+              <caret line="11" selection-start-line="11" selection-end-line="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -47,14 +40,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/javafx/SendMail.java">
+        <entry file="file://$PROJECT_DIR$/src/javafx/MailboxController.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/javafx/MailSendReceive.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="649">
-              <caret line="41" column="17" lean-forward="true" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1418#1419#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-153">
+              <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -62,38 +56,55 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/javafx/MessageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="52" column="149" lean-forward="true" selection-start-line="52" selection-start-column="149" selection-end-line="52" selection-end-column="149" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/javafx/CheckEmail.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="167">
+              <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/javafx/NewMessage.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="207" lean-forward="true" selection-start-line="12" selection-start-column="207" selection-end-line="12" selection-end-column="207" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/javafx/Mailbox.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/javafx/Application.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="204" selection-start-line="10" selection-start-column="204" selection-end-line="10" selection-end-column="204" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/javafx/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1584">
-              <caret line="242" column="16" lean-forward="true" selection-start-line="242" selection-start-column="16" selection-end-line="242" selection-end-column="16" />
+            <state relative-caret-position="469">
+              <caret line="341" column="1" lean-forward="true" selection-start-line="341" selection-start-column="1" selection-end-line="341" selection-end-column="1" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#8793#8794#0" expanded="true" />
                 <element signature="e#8850#8851#0" expanded="true" />
                 <element signature="e#9547#9548#0" expanded="true" />
                 <element signature="e#9602#9603#0" expanded="true" />
-                <element signature="e#9723#9724#0" expanded="true" />
-                <element signature="e#9754#9755#0" expanded="true" />
-                <element signature="e#9865#9866#0" expanded="true" />
-                <element signature="e#9896#9897#0" expanded="true" />
+                <element signature="e#9855#9856#0" expanded="true" />
+                <element signature="e#9886#9887#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -102,8 +113,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/javafx/DBAccess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2465">
-              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+            <state relative-caret-position="17">
+              <caret line="65" selection-start-line="65" selection-end-line="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -164,10 +175,10 @@
         <option value="$PROJECT_DIR$/src/javafx/Main.java" />
         <option value="$PROJECT_DIR$/src/javafx/CreateAccount.fxml" />
         <option value="$PROJECT_DIR$/src/javafx/NewMessage.fxml" />
-        <option value="$PROJECT_DIR$/src/javafx/Controller.java" />
         <option value="$PROJECT_DIR$/src/javafx/MessageController.java" />
         <option value="$PROJECT_DIR$/src/javafx/SendMail.java" />
         <option value="$PROJECT_DIR$/src/javafx/CheckEmail.java" />
+        <option value="$PROJECT_DIR$/src/javafx/Controller.java" />
       </list>
     </option>
   </component>
@@ -228,7 +239,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545367078059" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545395762779" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/javax mail.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -362,7 +373,7 @@
       <window_info id="Designer" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.17217484" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.17377399" />
       <window_info id="Structure" order="5" weight="0.25" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
@@ -411,8 +422,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/javafx/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -424,13 +435,17 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/javafx/NewMessage.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-      <provider editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="207" lean-forward="true" selection-start-line="12" selection-start-column="207" selection-end-line="12" selection-end-column="207" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/javafx/DBAccess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2465">
-          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+        <state relative-caret-position="17">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -439,17 +454,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/javafx/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1584">
-          <caret line="242" column="16" lean-forward="true" selection-start-line="242" selection-start-column="16" selection-end-line="242" selection-end-column="16" />
+        <state relative-caret-position="469">
+          <caret line="341" column="1" lean-forward="true" selection-start-line="341" selection-start-column="1" selection-end-line="341" selection-end-column="1" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#8793#8794#0" expanded="true" />
             <element signature="e#8850#8851#0" expanded="true" />
             <element signature="e#9547#9548#0" expanded="true" />
             <element signature="e#9602#9603#0" expanded="true" />
-            <element signature="e#9723#9724#0" expanded="true" />
-            <element signature="e#9754#9755#0" expanded="true" />
-            <element signature="e#9865#9866#0" expanded="true" />
-            <element signature="e#9896#9897#0" expanded="true" />
+            <element signature="e#9855#9856#0" expanded="true" />
+            <element signature="e#9886#9887#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -467,21 +481,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/javafx/MessageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="52" column="149" lean-forward="true" selection-start-line="52" selection-start-column="149" selection-end-line="52" selection-end-column="149" />
+        <state relative-caret-position="167">
+          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/javafx/CheckEmail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/javafx/CheckEmail.java" />
   </component>
   <component name="masterDetails">
     <states>

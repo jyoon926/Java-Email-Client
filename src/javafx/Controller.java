@@ -331,11 +331,10 @@ public class Controller implements Initializable
         stage.setTitle("New Message");
         stage.setScene(new Scene(root, 400, 500));
         stage.show();
-        Controller controller = new Controller();
         String messages = "No Messages!";
-        if (MailSendReceive.receiveMessage(controller.getUsername()).size() > 0) {
-            for (int i = 0; i < (MailSendReceive.receiveMessage(controller.getUsername())).size(); i++) {
-                messages = MailSendReceive.receiveMessage(controller.getUsername()).get(i) + "/n";
+        if (MailSendReceive.receiveMessage(username).size() > 0) {
+            for (int i = 0; i < (MailSendReceive.receiveMessage(username).size()); i++) {
+                messages = MailSendReceive.receiveMessage(username).get(i) + "/n";
             }
         }
         label.setText(messages);
